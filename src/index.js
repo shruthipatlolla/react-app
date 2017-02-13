@@ -1,84 +1,30 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory, IndexRoute  } from 'react-router'
 import './index.css';
-import App from './App.js'
+import logo from './images/logo.svg';
+
 import Main from './components/main-component.jsx';
-import LikeComponent from './components/like-component.jsx';
-import LoginControl from './components/login-component.jsx';
-import Toggle from './components/toggle-component.jsx';
-import Clock from './components/clock-component.jsx';
+import Team from './components/add-component.jsx';
+import RedditListComponent from './components/reddit-list.jsx'
 
-import Login from './components/login.jsx';
 
-function formatDate(date) {
-  return date.toLocaleDateString();
-}
-
-function Avatar(props) {
-  return (
-    <img className="Avatar"
-         src={props.user.avatarUrl}
-         alt={props.user.name} />
-  );
-}
-
-function UserInfo(props) {
-  return (
-    <div className="UserInfo">
-      <Avatar user={props.user} />
-      <div className="UserInfo-name">
-        {props.user.name}
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Welcome to React</h2>
+        </div>
+        <p className="App-intro">
+          The aim of this POC is to demonstrate how to build a simple application with react JS components.
+        </p>
       </div>
-    </div>
-  );
-}
-
-function Comment(props) {
-  return (
-    <div className="Comment">
-      <UserInfo user={props.author} />
-      <div className="Comment-text">
-        {props.text}
-      </div>
-      <div className="Comment-date">
-        {formatDate(props.date)}
-      </div>
-    </div>
-  );
-}
-
-const comment = {
-  date: new Date(),
-  text: 'I hope you enjoy learning React!',
-  author: {
-    name: 'Hello Kitty',
-    avatarUrl: 'http://placekitten.com/g/64/64'
+    );
   }
-};
-ReactDOM.render(
-  <Comment
-    date={comment.date}
-    text={comment.text}
-    author={comment.author} />,
-  document.getElementById('root')
-);
-
-
-class Team extends React.Component {
-	render() {
-      return (
-         <div>
-            <ol>
-			   <li>Shruthi Patlolla</li>
-               <li>Vinod Paka</li>
-               <li>Manish Guptha</li>
-            </ol>
-         </div>
-      )
-   }
 }
+
 
 class Projects extends React.Component {
 	render() {
@@ -99,7 +45,7 @@ class Contact extends React.Component {
 			<div>
 			<ol>
 				<li>For product questions/concerns please contact <b>Sean Taylor</b></li>
-				<li>We are located in Hyderabad and Pune</li>
+				<li>We are available at eng.f&i.radiant@dealertrack.com </li>
 			</ol>
 			</div>
 		)
@@ -107,16 +53,14 @@ class Contact extends React.Component {
 	
 }
 
-ReactDOM.render((
-   <Router history = {browserHistory}>
-      <Route path = "/" component = {Main}>
-	  
-         <Route path = "team" component = {Team} />
-		 <Route path = "projects" component = {Projects} />
-         <Route path = "contact" component = {Contact} />
-	  </Route>
-	  <Route path = "/" component = {LikeComponent}>
-      </Route>
-   </Router>
-	
-), document.getElementById('root'))
+ReactDOM.render(
+	<div>
+    <Main />
+    <Router history={browserHistory}>
+		<Route path = "/" component = {App}/>
+		 <Route path = "/team" component = {Team } />
+		 <Route path = "/projects" component = {Projects} />
+         <Route path = "/contact" component = {Contact} />
+    </Router>
+  </div>,
+  document.getElementById('root'))

@@ -1,23 +1,28 @@
 import React from 'react';
 import { Link, activeStyle } from 'react-router';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import '.././index.css';
-import LikeComponent from './like-component.jsx';
+
 class Main extends React.Component {
-   render() {
-      return (
-         <div>
-			<h1>Radiant Team </h1>
-            <ul>
-               <li><Link to="/team" activeStyle={{ color: 'black' }}><b>The Team</b></Link></li>
-			   <li><Link to="/projects" activeStyle={{ color: 'black' }}><b>The Products</b></Link></li>
-               <li><Link to="/contact" activeStyle={{ color: 'black' }}><b>Contacts</b></Link></li>
-            </ul>
-			
-			{this.props.children}
-			<LikeComponent />
-         </div>
-      )
-   }
+    render() {
+    return (
+      <div>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="/"><h1>Home</h1></a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="/team">Team</NavItem>
+            <NavItem eventKey={2} href="/projects">Projects</NavItem>
+			<NavItem eventKey={2} href="/contact">Contacts</NavItem>
+          </Nav>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 export default Main;
+
